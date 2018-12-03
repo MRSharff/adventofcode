@@ -16,7 +16,7 @@ def get_cached_input(input_file_path):
 
 
 def write_response(input_path, response):
-    os.makedirs(os.path.dirname(input_path))
+    os.makedirs(os.path.dirname(input_path), exist_ok=True)
     with open(input_path, 'w') as advent_input:
         advent_input.write(response.text)
 
