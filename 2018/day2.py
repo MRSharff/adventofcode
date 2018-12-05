@@ -1,18 +1,12 @@
 from collections import defaultdict
 from itertools import combinations
 
-import advent_of_code
-
 
 def get_letter_counts(box_id):
     counts = defaultdict(int)
     for char in box_id:
         counts[char] += 1
     return counts
-
-
-def get_likely_candidates():
-    return advent_of_code.get_day_input(2).splitlines()
 
 
 def checksum(box_ids):
@@ -46,7 +40,11 @@ def common_characters(str1, str2):
     return ''.join([a for a, b in zip(str1, str2) if a == b])
 
 
-if __name__ == '__main__':
-    likely_candidates = get_likely_candidates()  # day 2 input
-    print(checksum(likely_candidates))
-    print(common_characters(*get_prototype_boxes(likely_candidates)))
+def part1(day2input):
+    likely_candidates = day2input.splitlines()
+    return checksum(likely_candidates)
+
+
+def part2(day2input):
+    likely_candidates = day2input.splitlines()
+    return common_characters(*get_prototype_boxes(likely_candidates))

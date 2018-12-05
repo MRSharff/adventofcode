@@ -1,7 +1,5 @@
 from itertools import cycle
 
-from advent_of_code import get_day_input
-
 
 resulting_frequency = sum
 
@@ -16,7 +14,11 @@ def calibration_frequency(frequencies):
         seen.add(running_sum)
 
 
-if __name__ == '__main__':
-    day_1_input = [int(num) for num in get_day_input(1).splitlines()]
-    print(resulting_frequency(day_1_input))
-    print(calibration_frequency(cycle(day_1_input)))
+def part1(day1input):
+    frequencies = [int(num) for num in day1input.splitlines()]
+    return resulting_frequency(frequencies)
+
+
+def part2(day1input):
+    frequencies = [int(num) for num in day1input.splitlines()]
+    return calibration_frequency(cycle(frequencies))
