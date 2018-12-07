@@ -2,13 +2,17 @@ import re
 
 from collections import defaultdict
 
+def claim_coordinates(claim):
+    for x in range(int(claim['left_edge']), int(claim['left_edge']) + int(claim['width'])):
+        for y in range(int(claim['top_edge']), int(claim['top_edge']) + int(claim['height'])):
+            yield x, y
+
 
 def get_claimed_fabric(claims):
     fabric = defaultdict(int)
     for claim in claims:
-        for x in range(int(claim['left_edge']), int(claim['left_edge']) + int(claim['width'])):
-            for y in range(int(claim['top_edge']), int(claim['top_edge']) + int(claim['height'])):
-                fabric[(x, y)] += 1
+        for x, y in claim_coordinates(claim):
+            fabric[(x, y)] += 1
     return fabric
 
 
@@ -22,10 +26,9 @@ def get_claims(day3input):
 
 
 def claim_overlaps(claim, fabric):
-    for x in range(int(claim['left_edge']), int(claim['left_edge']) + int(claim['width'])):
-        for y in range(int(claim['top_edge']), int(claim['top_edge']) + int(claim['height'])):
-            if fabric[(x, y)] > 1:
-                return True
+    for x, y in claim_coordinates(claim):
+        if fabric[(x, y)] > 1:
+            return True
     return False
 
 

@@ -2,7 +2,10 @@ import os
 
 import requests
 
-session = os.environ['advent_session_cookie']
+try:
+    session = os.environ['advent_session_cookie']
+except KeyError:
+    session = None
 
 
 class AdventOfCodeException(Exception):
@@ -31,8 +34,10 @@ def fetch_day_input(day):
 def get_day_input(day):
     input_file_path = 'inputs/day{}.txt'.format(day)
     try:
-        return get_cached_input(input_file_path)
+        return get_cached_input(input_file_path).strip()
     except FileNotFoundError:
+        if session is None:
+            raise AdventOfCodeException('No session defined')
         response = fetch_day_input(day)
         write_response(input_file_path, response)
-        return response.text
+        return response.text.strip()
