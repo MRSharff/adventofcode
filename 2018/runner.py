@@ -1,5 +1,5 @@
 import advent_of_code
-import day1, day2, day3, day4, day5, day6, day7
+import day1, day2, day3, day4, day5, day6, day7, day8
 
 
 days = [
@@ -9,7 +9,8 @@ days = [
     day4,
     day5,
     day6,
-    day7
+    day7,
+    day8
 ]
 
 
@@ -34,6 +35,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    # print_solutions_for_day(5)
-    # test_day5()
-    # print(range(1, len(days)))
