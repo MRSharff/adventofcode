@@ -50,6 +50,7 @@ def tests():
 def part1(polymer):
     return len(react(polymer))
 
+
 def part2(polymer):
     unit_types = [chr(num) for num in range(97, 123)]
     polymer_sizes = {unit: len(react(remove_all(unit, polymer))) for unit in unit_types}

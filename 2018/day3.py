@@ -2,6 +2,7 @@ import re
 
 from collections import defaultdict
 
+
 def claim_coordinates(claim):
     for x in range(int(claim['left_edge']), int(claim['left_edge']) + int(claim['width'])):
         for y in range(int(claim['top_edge']), int(claim['top_edge']) + int(claim['height'])):
