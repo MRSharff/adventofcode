@@ -1,3 +1,4 @@
+import string
 
 def annihilates(unit1, unit2):
     return abs(ord(unit1) - ord(unit2)) == 32
@@ -6,13 +7,10 @@ def annihilates(unit1, unit2):
 def react(polymer):
     catalyzed_polymer = []
     for unit in polymer:
-        catalyzed_polymer.append(unit)
-        try:
-            if annihilates(catalyzed_polymer[-2], unit):
-                catalyzed_polymer.pop()
-                catalyzed_polymer.pop()
-        except IndexError:
-            pass
+        if catalyzed_polymer and annihilates(catalyzed_polymer[-1], unit):
+            catalyzed_polymer.pop()
+        else:
+            catalyzed_polymer.append(unit)
     return ''.join(catalyzed_polymer)
 
 
@@ -52,9 +50,9 @@ def part1(polymer):
 
 
 def part2(polymer):
-    unit_types = [chr(num) for num in range(97, 123)]
-    polymer_sizes = {unit: len(react(remove_all(unit, polymer))) for unit in unit_types}
-    return min(polymer_sizes.values())
+    unit_types = string.ascii_lowercase
+    polymer_sizes = [len(react(remove_all(unit, polymer))) for unit in unit_types]
+    return min(polymer_sizes)
 
 
 if __name__ == '__main__':
